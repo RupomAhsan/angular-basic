@@ -15,13 +15,13 @@ export class PlayerDetailComponent implements OnInit {
   originalPlayer: Players;
   clubs: Club[];
 
-  constructor(private categoryService: ClubService,
+  constructor(private clubService: ClubService,
     private playerService: PlayersService,
     private route: ActivatedRoute,
     private location: Location) { }
 
   ngOnInit() {
-    this.getCategories();
+    this.getClubs();
     // Get the passed in player id
     let id = +this.route.snapshot.paramMap.get('id');
     // Create or load a player
@@ -47,16 +47,16 @@ export class PlayerDetailComponent implements OnInit {
     // Add a new player
     this.player = new Players(
       {
-      name : 'Cristiano Ronaldo',
-      joinedDate: new Date(),
-      price: 5000,
-      nationality: 'PORTUGAL'
-    });
+        name: 'Cristiano Ronaldo',
+        joinedDate: new Date(),
+        price: 5000,
+        nationality: 'PORTUGAL'
+      });
     this.originalPlayer = Object.assign({}, this.player);
   }
 
-  private getCategories(): void {
-    this.categoryService.getClubs()
+  private getClubs(): void {
+    this.clubService.getClubs()
       .subscribe(clubs => this.clubs = clubs);
   }
 

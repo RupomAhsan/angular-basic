@@ -10,14 +10,14 @@ import { Club } from '../_models/club';
 export class ClubComponent implements OnInit {
   clubs: Club[];
 
-  constructor(private categoryService: ClubService) { }
+  constructor(private clubService: ClubService) { }
 
   ngOnInit() {
-    this.getCategories();
+    this.getClubs();
   }
 
-  private getCategories(): void {
-    this.categoryService.getClubs()
+  private getClubs(): void {
+    this.clubService.getClubs()
       .subscribe(clubs => this.clubs = clubs);
   }
 }
